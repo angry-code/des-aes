@@ -1,0 +1,55 @@
+PRACTICAL NO 4
+Aim: - Write program to encrypt and decrypt strings using
+- DES Algorithm = The Data Encryption Standard is a
+symmetric-key algorithm for the encryption of digital data.
+Although its short key length of 56 bits makes it too insecure for
+modern applications, it has been highly influential in the
+advancement of cryptography.
+Input: -
+import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
+import javax.swing.JOptionPane;
+public class DES{
+public static void main(String[] args) throws Exception {
+KeyGenerator keygen = KeyGenerator.getInstance("DES");// create a key
+SecretKey secretkey = keygen.generateKey();
+Cipher cip = Cipher.getInstance("DES");
+// initialise cipher to with secret key
+cip.init(Cipher.ENCRYPT_MODE, secretkey);
+String inputText = JOptionPane.showInputDialog("Give Input: ");
+byte[] encrypted = cip.doFinal(inputText.getBytes());
+cip.init(Cipher.DECRYPT_MODE, secretkey);
+byte[] decrypted = cip.doFinal(encrypted);
+JOptionPane.showMessageDialog(JOptionPane.getRootFrame(),
+"encrypted : " + new String(encrypted) + "\n" +"decrypted : " + new String(decrypted));
+System.exit(0);
+}
+}
+Output: -- AES Algorithm = The AES Encryption algorithm (also known
+as the Rijndael algorithm) is a symmetric block cipher algorithm
+with a block/chunk size of 128 bits. It converts these individual
+blocks using keys of 128, 192, and 256 bits. Once it encrypts these
+blocks, it joins them together to form the ciphertext.
+Input: -
+import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
+import javax.swing.JOptionPane;
+public class AES{
+public static void main(String[] args) throws Exception {
+KeyGenerator keygen = KeyGenerator.getInstance("AES");// create a key
+SecretKey secretkey = keygen.generateKey();
+Cipher cip = Cipher.getInstance("AES");
+// initialise cipher to with secret key
+cip.init(Cipher.ENCRYPT_MODE, secretkey);
+String inputText = JOptionPane.showInputDialog(" Give Input: ");
+byte[] encrypted = cip.doFinal(inputText.getBytes());
+cip.init(Cipher.DECRYPT_MODE, secretkey);
+byte[] decrypted = cip.doFinal(encrypted);
+JOptionPane.showMessageDialog(JOptionPane.getRootFrame(),
+"encrypted : " + new String(encrypted) + "\n" +"decrypted : " + new String(decrypted));
+System.exit(0);
+}
+}
+Output: -
